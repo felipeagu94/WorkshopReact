@@ -1,0 +1,14 @@
+var str = "3422.22";
+var patt = new RegExp("^[^0]([0-9])+(\.){0,1}([0-9]{0,2})$");
+var res = patt.test(str);
+console.log(res)
+
+const validarFormatoMoneda = (valor) => {
+    const value = valor;
+    const expresion = new RegExp('^[^0]([0-9])+(\.){0,1}([0-9]{0,2})$');
+    if (!expresion.test(value)) {
+        return "Bloquedo"
+    }
+    return "Permitido"
+}
+console.log(validarFormatoMoneda(str))
