@@ -13,7 +13,7 @@ export default class Register extends Component{
     changeText = (event) => this.setState({inputText: event.target.value})
     changeHiden = () => this.setState({hiden: !this.state.hiden})
     clear = () => {
-        this.setState({inputText: ''}, () => this.state.sendtext(this.state.inputText))
+        this.setState({inputText: ''}, () => this.sendText)
     }
     sendText = () => this.state.sendtext(this.state.inputText)
 
