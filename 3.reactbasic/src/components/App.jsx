@@ -11,7 +11,7 @@ export default class App extends Component{
         Year: 2019,
         hide: true,
         message: 'Hide Message',
-        valuesItem: [1200,1234,-1200]
+        valuesItem: []
     }
     // componentDidMount = () => console.log("Did Mount App")
     // componentDidUpdate = () => console.log("Did Update App")
@@ -24,18 +24,30 @@ export default class App extends Component{
             <React.Fragment>
             <Header AppTitle={AppTitle} Year={Year}/>
             <hr/>
-            {hide && <Alert/>}
-            <button onClick={this.onHide} type="button" className="btn btn-info">{message}</button>
-            <div className="row container">
-                <div className="md-12">
-                    <div className="md-6">
-                    <AddItem addValue={this.addValue}/>
+            <div className="container">
+                {hide && <Alert/>}
+                <button onClick={this.onHide} type="button" className="btn btn-info">{message}</button>
+                <hr/>
+                <div className="row">
+                    <div className="col-4">
+                        <div className="col-12">
+                            <AddItem addValue={this.addValue}/>
+                        </div>                        
                     </div>
-                    <div className="md-6">
-                        {valuesItem.map( valueItem => <Cart valueItem={valueItem} key={valueItem}/>)}
-                    </div>
-                    <div className="md-6">
-                        <Sumary valueItem={valuesItem}/>
+                    <div className="col-6 card">
+                        <div className="col-12 card-body">
+                            <h5 class="card-title">Details outgoes</h5>
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="row">
+                                        {valuesItem.map( valueItem => <Cart valueItem={valueItem} key={valueItem}/>)}
+                                    </div>
+                                </div>                         
+                            </div>
+                        </div>
+                        <div className="col-12 card-body">
+                            <Sumary valueItem={valuesItem}/>
+                        </div>
                     </div>
                 </div>
             </div>
