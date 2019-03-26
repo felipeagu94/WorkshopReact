@@ -34,7 +34,7 @@ export default class App extends Component{
                             <AddItem addValue={this.addValue}/>
                         </div>                        
                     </div>
-                    <div className="col-6 card">
+                    <div className="col-8 card">
                         <div className="col-12 card-body">
                             <h5 class="card-title">Details outgoes</h5>
                             <div className="card">
