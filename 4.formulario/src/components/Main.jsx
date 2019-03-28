@@ -14,10 +14,10 @@ export default class App extends Component{
         const count = appoitments.length
         this.setState({ appoitments, count })
     }
-    cancelAppoinment = (Appoinment) =>{
-        const appoitments = [...this.state.appoitments]
-        //removeItemFromArr(appoitments,Appoinment)
-        const count = appoitments.length
+    cancelAppoinment = (AppoinmentDelete) =>{
+        const apps = [...this.state.appoitments]
+        const appoitments = apps.filter( appoitment => appoitment !== AppoinmentDelete)
+        const count = apps.length
         this.setState({ appoitments, count })
     }
     render(){
