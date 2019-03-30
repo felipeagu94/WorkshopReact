@@ -1,0 +1,13 @@
+html,
+body {
+    overflow-x: hidden;
+    /* Prevent scroll on narrow devices */
+}
+
+body {
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 760px;
+}
