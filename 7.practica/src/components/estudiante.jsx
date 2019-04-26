@@ -6,7 +6,7 @@ const Estudiante = ({nombreEstudiante,get}) => {
         const document = DocumentRef.current.value
         get(document)
     }
-    console.log(nombreEstudiante)
+    // console.log(nombreEstudiante)
     return(
         <div className="card">
             <div className="card-body row">

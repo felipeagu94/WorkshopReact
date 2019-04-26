@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Estudiante from './estudiante'
 import Formulario from './Formulario'
 import Eventos from './Eventos'
+import Filtro from './Filtros'
 import axios from 'axios'
 
 class Main extends Component {
 	state = {
         nombreEstudiante: 'Nombres y Apellidos',
-		events: [{event: "Evento", type: "none", start: "Inicia", duration: "0", final: "Final"}],
+		events: [],
+		eventsFilters: [],
 		URL: ''
     }
 	componentDidMount() {
@@ -23,24 +25,31 @@ class Main extends Component {
         }).catch(error => console.log(error))
 	}
 	guardarEvento = (evento) => {
-        const events = [...this.state.events, evento]
-        this.setState({ events })
-    }
+		const eventsfilters = this.state.events.filter( name => name.event !== evento.event)
+        const events = [...eventsfilters, evento]
+        this.setState({ events, eventsFilters: events })
+	}	
+	filtrar = (filtro) => {
+		const eventsFilters = filtro ? this.state.events.filter( name => name.type === filtro): [...this.state.events]
+		this.setState({ eventsFilters })
+	}
 
 	render() {
-		const {nombreEstudiante,events} = this.state
-		console.log('...'+ nombreEstudiante)
+		const {nombreEstudiante,eventsFilters} = this.state
+		// console.log('...'+ nombreEstudiante)
 		// console.log(events)
 		return (
 			<div className="container">
 				<div className="card">
 					<div className="card-body text-center">REACT WORKSHOP POLI 2019</div>
 				</div>
+				<br/>
 				<div className="card">
 					<div className="card-body text-center">
 						<Estudiante nombreEstudiante={nombreEstudiante} get={this.getEstudiante}/>
 					</div>
 				</div>
+				<br/>
 				<div className="row">
 					<div className="card col-6">
 						<div className="card-body text-center">
@@ -48,7 +57,13 @@ class Main extends Component {
 						</div>
 					</div>
 					<div className="card col-6">
-						<Eventos events={events}/>
+						<div>
+							<Filtro filtro={this.filtrar}/>
+						</div>
+						<hr/>
+						<div>
+						<Eventos events={eventsFilters}/>
+						</div>
 					</div>
 				</div>
 			</div>

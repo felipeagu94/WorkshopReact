@@ -23,7 +23,10 @@ export default class Registro extends Component{
     calcularfinal = () => {
         const hora = this.StartRef.current.value
         const duration = this.DurationRef.current.value
-        const final = parseInt(hora) + parseInt(duration)
+        let final = parseInt(hora) + parseInt(duration)
+        if(final > 23){
+            final = final - 23
+        }
         this.setState({final})
     }
 
@@ -60,7 +63,10 @@ export default class Registro extends Component{
                         <label>Tipo</label>                        
                     </div>
                     <div className="col-md-6">
-                    <input ref={this.TypeRef} type="text" className="form-control" required />
+                    <select ref={this.TypeRef} className="custom-select d-block w-100" required>
+                            <option value="Gratis">Gratis</option>
+                            <option value="Pago">Pago</option>
+                        </select>
                     </div>
                 </div>
                 <div className="row">
@@ -68,7 +74,7 @@ export default class Registro extends Component{
                         <label>Inicio</label>
                     </div>
                     <div className="col-md-6">
-                        <input ref={this.StartRef} type="number" className="form-control" required />
+                        <input ref={this.StartRef} type="number" min="0" max="24" className="form-control" required />
                     </div>
                 </div>
                 <div className="row">
@@ -76,7 +82,7 @@ export default class Registro extends Component{
                         <label>Duración</label>
                     </div>
                     <div className="col-md-6">
-                        <input ref={this.DurationRef} type="number" className="form-control" onChange={this.calcularfinal} />
+                        <input ref={this.DurationRef} type="number" min="0" max="15" className="form-control" onChange={this.calcularfinal} />
                     </div>                  
                 </div>                
                 <hr className="mb-4" />
